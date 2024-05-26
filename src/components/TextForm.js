@@ -30,7 +30,7 @@ export default function TextForm(props) {
     const calculateNoOfWords = (arr) => {
         let count = 0;
         arr.forEach(element => {
-            if(element!=""){
+            if(element!==""){
                 count++;
             }
         });
@@ -49,19 +49,19 @@ export default function TextForm(props) {
                     color: props.mode==='dark'?'white':'#212529'
                 }} value={text} placeholder='Enter Text Here'></textarea>
             </div>
-            <button className="btn btn-primary mx-1 my-1" onClick={handleUpClick} >Convert To UpperCase</button>
-            <button className="btn btn-primary mx-1 my-1" onClick={handleDownClick} >Convert To LowerCase</button>
-            <button className="btn btn-primary mx-1 my-1" on onClick={handleClearClick} >Clear</button>
+            <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleUpClick} >Convert To UpperCase</button>
+            <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleDownClick} >Convert To LowerCase</button>
+            <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" on onClick={handleClearClick} >Clear</button>
         </div>
         <div className="container my-5" style={{
             color: props.mode==='dark'?'white':'#212529'
         }}>
             <h1>Your Text Summary !!</h1>
-            <h6 className="mx-5">Words: {calculateNoOfWords(text.split(" "))}</h6>
+            <h6 className="mx-5">Words: {calculateNoOfWords(text.split(/\s+/))}</h6>
             <h6 className="mx-5">Character: {text.length}</h6>
-            <h6 className="mx-5">Time to  read: {(0.008 * text.split(" ").length)} min.</h6><br/>
+            <h6 className="mx-5">Time to  read: {(0.008 * calculateNoOfWords(text.split(/\s+/)))} min.</h6><br/>
             <h3 className="mx-3"> Preview</h3>
-            <p className="mx-5">{text.length>0?text:"Enter something to see the preview"}</p>
+            <p className="mx-5">{text.length>0?text:"Nothing to Preview!! "}</p>
         </div>
         </>
     )
