@@ -25,7 +25,16 @@ export default function TextForm(props) {
 
     const handleOnChange = (event) => {
         setText(event.target.value);
-        props.showAlert("Typing....","primary");
+    }
+
+    const calculateNoOfWords = (arr) => {
+        let count = 0;
+        arr.forEach(element => {
+            if(element!=""){
+                count++;
+            }
+        });
+        return count;
     }
     
     return (
@@ -48,7 +57,7 @@ export default function TextForm(props) {
             color: props.mode==='dark'?'white':'#212529'
         }}>
             <h1>Your Text Summary !!</h1>
-            <h6 className="mx-5">Words: {text.split(" ").length}</h6>
+            <h6 className="mx-5">Words: {calculateNoOfWords(text.split(" "))}</h6>
             <h6 className="mx-5">Character: {text.length}</h6>
             <h6 className="mx-5">Time to  read: {(0.008 * text.split(" ").length)} min.</h6><br/>
             <h3 className="mx-3"> Preview</h3>
